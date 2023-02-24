@@ -25,13 +25,13 @@ public class Power {
     private Boolean fatality;
 
     @ToString.Exclude
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "powers")
+    @ManyToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER, mappedBy = "powers")
     private Set<Superhero> superheroes = new HashSet<>();
 
     public Power(String name, Boolean fatality) {
 
         this.name = name;
-
         this.fatality = fatality;
     }
 

@@ -26,11 +26,13 @@ public class Main {
 
     private static Superhero getRandomSuperhero() {
         Faker faker = new Faker();
+        Random random = new Random();
         Superhero superhero = new Superhero();
         superhero.setName(faker.funnyName().name());
         superhero.setHeroName(faker.superhero().name());
         superhero.setEnemy(new Enemy(faker.superhero().name(), faker.name().fullName()));
         superhero.setSidekick(new Sidekick(faker.name().lastName(), faker.superhero().power()));
+        //superhero.addPowerToSuperhero(new Power(faker.superhero().power(), random.nextBoolean()));
         superhero.setPowers(generateRandomPowers(superhero));
         return superhero;
     }
@@ -39,10 +41,10 @@ public class Main {
         Faker faker = new Faker();
         Random random = new Random();
         Set<Power> powers = new HashSet<>();
-       // for (int i = 0; i < random.nextInt(3); i++) {
-            Power power = new Power(faker.superhero().power(), random.nextBoolean());
-            power.addSuperheroToPower(superhero);
-            powers.add(power);
+        // for (int i = 0; i < random.nextInt(3); i++) {
+        Power power = new Power(faker.superhero().power(), random.nextBoolean());
+        power.addSuperheroToPower(superhero);
+        powers.add(power);
         //}
         return powers;
     }
